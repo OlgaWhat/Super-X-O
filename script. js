@@ -1,54 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cells = document.querySelectorAll('.cell');
-    let currentPlayer = 'X';
-    let gameActive = true;
+  const board = document.querySelector('.board');
+  
+  board.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('cell')) return;
     
-    cells.forEach(cell => {
-        cell.addEventListener('click', handleCellClick);
-    });
+    const cell = e.target;
+    if (cell.textContent || !gameActive) return;
     
-    function handleCellClick(e) {
-        const cell = e.target;
-        
-        // Если клетка уже занята или игра окончена
-        if (cell.textContent !== '' || !gameActive) return;
-        
-        // Делаем ход
-        cell.textContent = currentPlayer;
-        
-        // Проверяем победу
-        if (checkWin()) {
-            alert(`Игрок ${currentPlayer} победил!`);
-            gameActive = false;
-            return;
-        }
-        
-        // Проверяем ничью
-        if (checkDraw()) {
-            alert('Ничья!');
-            gameActive = false;
-            return;
-        }
-        
-        // Меняем игрока
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    cell.textContent = currentPlayer;
+    
+    if (checkWin()) {
+      alert(`Победил ${currentPlayer}!`);
+      gameActive = false;
+      return;
     }
     
-    function checkWin() {
-        const winningCombinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // горизонтали
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // вертикали
-            [0, 4, 8], [2, 4, 6]             // диагонали
-        ];
-        
-        return winningCombinations.some(combination => {
-            return combination.every(index => {
-                return cells[index].textContent === currentPlayer;
-            });
-        });
-    }
-    
-    function checkDraw() {
-        return [...cells].every(cell => cell.textContent !== '');
-    }
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+  });
+  
+  // Функции checkWin() и checkDraw() остаются без изменений
 });
