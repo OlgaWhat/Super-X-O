@@ -30,18 +30,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Проверка победы
     function checkWin() {
         const winPatterns = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Горизонтали
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Вертикали
-            [0, 4, 8], [2, 4, 6]              // Диагонали
-        ];
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Горизонтали
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Вертикали
+        [0, 4, 8], [2, 4, 6]             // Диагонали
+    ];
 
-        return winPatterns.some(pattern => {
-            return pattern.every(index => {
-                return cells[index].textContent === currentPlayer;
-            });
-        });
+    for (const pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (cells[a].textContent && 
+            cells[a].textContent === cells[b].textContent && 
+            cells[a].textContent === cells[c].textContent) {
+            
+            drawWinningLine(pattern);
+            return true;
+        }
     }
-
+    return false;
+    }
+    
+function drawWinningLine(cellsIndexes) {
+    const [a, b, c] = cellsIndexes;
+    const cell1 = cells[a];
+    const cell2 = cells[c];
+    const boardRect = board.getBoundingClientRect();
+    
+    const line = document.createElement('div');
+    line.className = 'winning-line';
+    
+    // Определяем тип линии
+    if (a === 0 && c === 2 || a === 3 && c === 5 || a === 6 && c === 8) {
+        line.classList.add('horizontal');
+    } else if (a === 0 && c === 6 || a === 1 && c === 7 || a === 2 && c === 8) {
+        line.classList.add('vertical');
+    } else if (a === 0 && c === 8) {
+        line.classList.add('diagonal-1');
+    } else {
+        line.classList.add('diagonal-2');
+    }
+    
+    board.appendChild(line);
+}
     // Проверка ничьей
     function checkDraw() {
         return [...cells].every(cell => cell.textContent !== '');
@@ -49,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Завершение игры
     function endGame(message) {
-        gameActive = false;
-        setTimeout(() => alert(message), 10);
+       showResult(message);
+    gameActive = false;
     }
 
     // Сброс игры
