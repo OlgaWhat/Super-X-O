@@ -7,7 +7,7 @@ body {
 .board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
+    gap: 5px;
     justify-content: center;
     margin: 20px auto;
 }
@@ -21,8 +21,22 @@ body {
     align-items: center;
     font-size: 48px;
     cursor: pointer;
+    user-select: none; /* Запрет выделения текста */
 }
 
-.cell:hover {
-    background-color: #f0f0f0;
+.cell.X { color: #ff4757; } /* Красный для X */
+.cell.O { color: #2ed573; } /* Зелёный для O */
+
+#reset {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reset:hover {
+    background: #2980b9;
 }
