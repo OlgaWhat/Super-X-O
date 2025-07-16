@@ -40,3 +40,54 @@ body {
 #reset:hover {
     background: #2980b9;
 }
+
+#game-result {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 100;
+}
+
+#game-result.show {
+    display: block;
+}
+
+.winning-line {
+    position: absolute;
+    background: gold;
+    z-index: 10;
+}
+
+/* Горизонтальная линия */
+.winning-line.horizontal {
+    height: 4px;
+    width: 100%;
+}
+
+/* Вертикальная линия */
+.winning-line.vertical {
+    height: 100%;
+    width: 4px;
+}
+
+/* Диагональная линия */
+.winning-line.diagonal-1 {
+    width: 140%;
+    height: 4px;
+    transform: rotate(45deg);
+    transform-origin: left;
+}
+
+.winning-line.diagonal-2 {
+    width: 140%;
+    height: 4px;
+    transform: rotate(-45deg);
+    transform-origin: left;
+}
