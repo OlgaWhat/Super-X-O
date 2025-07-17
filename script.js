@@ -47,35 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Рисуем линию победы
     function drawWinningLine() {
-        const line = document.createElement('div');
-        line.className = 'winning-line';
-        
-        // Определяем тип линии (простая логика - можно улучшить)
-        if ([0, 1, 2].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('horizontal');
-            line.style.top = '50px';
-        } else if ([3, 4, 5].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('horizontal');
-            line.style.top = '155px';
-        } else if ([6, 7, 8].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('horizontal');
-            line.style.top = '260px';
-        } else if ([0, 3, 6].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('vertical');
-            line.style.left = '50px';
-        } else if ([1, 4, 7].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('vertical');
-            line.style.left = '155px';
-        } else if ([2, 5, 8].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('vertical');
-            line.style.left = '260px';
-        } else if ([0, 4, 8].every(i => cells[i].textContent === currentPlayer)) {
-            line.classList.add('diagonal-1');
-        } else {
-            line.classList.add('diagonal-2');
-        }
+       function drawWinningLine() {
+    const line = document.createElement('div');
+    line.className = 'winning-line';
+    
+    // Определяем тип линии
+    if ([0, 1, 2].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('row-0');
+    } else if ([3, 4, 5].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('row-1');
+    } else if ([6, 7, 8].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('row-2');
+    } else if ([0, 3, 6].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('col-0');
+    } else if ([1, 4, 7].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('col-1');
+    } else if ([2, 5, 8].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('col-2');
+    } else if ([0, 4, 8].every(i => cells[i].textContent === currentPlayer)) {
+        line.classList.add('diagonal-1');
+    } else {
+        line.classList.add('diagonal-2');
+    }
 
-        board.appendChild(line);
+    board.appendChild(line);
+}
     }
 
     // Проверка ничьей
