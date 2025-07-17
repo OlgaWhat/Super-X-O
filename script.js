@@ -28,8 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Проверка победы
-    function checkWin() {
-        const winPatterns = [
+    function checkWin() {const winPatterns = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Горизонтали
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // Вертикали
         [0, 4, 8], [2, 4, 6]             // Диагонали
@@ -70,6 +69,11 @@ function drawWinningLine(cellsIndexes) {
     
     board.appendChild(line);
 }
+    function showResult(message) {
+    const resultElement = document.getElementById('game-result');
+    document.getElementById('result-text').textContent = message;
+    resultElement.classList.add('show');
+}
     // Проверка ничьей
     function checkDraw() {
         return [...cells].every(cell => cell.textContent !== '');
@@ -96,4 +100,12 @@ function drawWinningLine(cellsIndexes) {
         cell.addEventListener('click', handleCellClick);
     });
     resetButton.addEventListener('click', resetGame);
+
+    // Обработчик для новой игры
+document.getElementById('new-game-btn').addEventListener('click', () => {
+    document.getElementById('game-result').classList.remove('show');
+    resetGame();
+    // Удаляем все линии
+    document.querySelectorAll('.winning-line').forEach(line => line.remove());
+}
 });
