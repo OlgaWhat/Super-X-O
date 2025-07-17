@@ -78,29 +78,47 @@ body {
 /* Стили для линии победы */
 .winning-line {
     position: absolute;
-    margin: auto;
     background: gold;
     z-index: 10;
     height: 4px;
-    transform-origin: left;
+    pointer-events: none; /* Важно! */
 }
 
+/* Горизонтальные линии */
 .winning-line.horizontal {
     width: 310px;
     left: 5px;
 }
 
+.winning-line.horizontal.top { top: 50px; }
+.winning-line.horizontal.middle { top: 155px; }
+.winning-line.horizontal.bottom { top: 260px; }
+
+/* Вертикальные линии - новый подход */
 .winning-line.vertical {
     width: 310px;
-    transform: rotate(90deg);
+    height: 4px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
 }
 
+.winning-line.vertical.left { left: -105px; }
+.winning-line.vertical.center { left: 0; }
+.winning-line.vertical.right { left: 105px; }
+
+/* Диагональные линии */
 .winning-line.diagonal-1 {
     width: 420px;
+    left: 5px;
+    top: 5px;
     transform: rotate(45deg);
+    transform-origin: left;
 }
 
 .winning-line.diagonal-2 {
     width: 420px;
+    left: 5px;
+    top: 305px;
     transform: rotate(-45deg);
+    transform-origin: left;
 }
