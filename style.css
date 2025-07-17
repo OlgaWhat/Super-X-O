@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 50px;
+    background-color: #f5f5f5;
 }
 
 .board {
@@ -10,37 +11,26 @@ body {
     gap: 5px;
     justify-content: center;
     margin: 20px auto;
+    position: relative;
 }
 
 .cell {
     width: 100px;
     height: 100px;
+    background: white;
     border: 2px solid #333;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 48px;
     cursor: pointer;
-    user-select: none; /* Запрет выделения текста */
+    user-select: none;
 }
 
-.cell.X { color: #ff4757; } /* Красный для X */
-.cell.O { color: #2ed573; } /* Зелёный для O */
+.cell.X { color: #ff4757; }
+.cell.O { color: #2ed573; }
 
-#reset {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#reset:hover {
-    background: #2980b9;
-}
-
+/* Стили для плашки результата */
 #game-result {
     display: none;
     position: fixed;
@@ -49,45 +39,67 @@ body {
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.9);
     color: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     text-align: center;
     z-index: 100;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 #game-result.show {
     display: block;
+    animation: fadeIn 0.3s;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#result-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#new-game-btn {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#new-game-btn:hover {
+    background: #2980b9;
+}
+
+/* Стили для линии победы */
 .winning-line {
     position: absolute;
     background: gold;
     z-index: 10;
-}
-
-/* Горизонтальная линия */
-.winning-line.horizontal {
     height: 4px;
-    width: 100%;
-}
-
-/* Вертикальная линия */
-.winning-line.vertical {
-    height: 100%;
-    width: 4px;
-}
-
-/* Диагональная линия */
-.winning-line.diagonal-1 {
-    width: 140%;
-    height: 4px;
-    transform: rotate(45deg);
     transform-origin: left;
+}
+
+.winning-line.horizontal {
+    width: 310px;
+    left: 5px;
+}
+
+.winning-line.vertical {
+    width: 310px;
+    transform: rotate(90deg);
+}
+
+.winning-line.diagonal-1 {
+    width: 420px;
+    transform: rotate(45deg);
 }
 
 .winning-line.diagonal-2 {
-    width: 140%;
-    height: 4px;
+    width: 420px;
     transform: rotate(-45deg);
-    transform-origin: left;
 }
