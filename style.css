@@ -29,8 +29,9 @@ body {
     user-select: none;
 }
 
-.cell.X { color: #96fdda; }
-.cell.O { color: #2ed573; }
+.cell.X { color: #fdb5f0; }
+.cell.O { color: #96fdda; }
+
 
 /* Стили для плашки результата */
 #game-result {
@@ -65,7 +66,7 @@ body {
 
 #new-game-btn {
     padding: 10px 20px;
-    background: #3498db;
+    background: #39db34;
     color: white;
     border: none;
     border-radius: 5px;
