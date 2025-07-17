@@ -26,5 +26,15 @@
     </div>
 
     <script src="script.js"></script>
+
+
+    <script>
+    // Удаляем все label'ы при загрузке
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('label').forEach(l => l.remove());
+    });
+  </script>
+
+    
 </body>
 </html>
