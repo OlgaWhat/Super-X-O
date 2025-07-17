@@ -29,7 +29,7 @@ body {
     user-select: none;
 }
 
-.cell.X { color: #ff4757; }
+.cell.X { color: #96fdda; }
 .cell.O { color: #2ed573; }
 
 /* Стили для плашки результата */
