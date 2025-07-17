@@ -72,12 +72,13 @@ body {
 }
 
 #new-game-btn:hover {
-    background: #2980b9;
+    background: #7fffd4;
 }
 
 /* Стили для линии победы */
 .winning-line {
     position: absolute;
+    margin: auto;
     background: gold;
     z-index: 10;
     height: 4px;
